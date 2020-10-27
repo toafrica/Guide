@@ -187,7 +187,7 @@ public class Guide extends FrameLayout {
                 bounds.bottom = bounds.top + height;
         }
         MarginLayoutParams params = (MarginLayoutParams) config.guideView.getLayoutParams();
-        if (params==null) {
+        if (params == null) {
             params = generateDefaultLayoutParams();
         }
         params.leftMargin = bounds.left;
@@ -337,9 +337,6 @@ public class Guide extends FrameLayout {
         }
     }
 
-    /**
-     * 获取手机屏幕的真实高度（包含虚拟按键）
-     */
     public static int getScreenHeight(Context context) {
         if (context != null) {
             WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
@@ -352,9 +349,6 @@ public class Guide extends FrameLayout {
         return 0;
     }
 
-    /**
-     * 获取手机屏幕的真实宽度（包含虚拟按键）
-     */
     public static int getScreenWidth(Context context) {
         if (context != null) {
             WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
