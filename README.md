@@ -9,14 +9,10 @@ Android 新手蒙层引导图,链式调用,一链到底,就是这么爽
 
 
 
-## 效果
-
-
-
 ## 导入
 
 ```
-implementation 'com.toafrica:guide:1.0.2'
+implementation 'com.toafrica:guide:1.0.3'
 ```
 
 ## 使用
