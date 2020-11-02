@@ -23,7 +23,7 @@ new Guide.Builder(Orientation.PORTRAIT)//设置当前横竖屏模式
     .setCorner(5, 5)//设置圆角
     .setBackgroundColor(0xee000000)//背景色
     .location(Location.BOTTOM)//引导图相对目标位置
-    .setHighLightPadding(10, 0, 8, 10)//给目标设置的
+    .setHighLightPadding(10, 0, 8, 10)//设置高亮目标区域padding
     .setOffset(20, 20)//设置引导图的 x,y偏移量
     .setGuide(R.layout.guide_1)//引导图
     .setRatio(0.58f)//设置引导图的屏占比,方便多分辨率尺寸适配
