@@ -99,7 +99,7 @@ public class Guide extends FrameLayout {
 
             throw new IllegalStateException("GuideView generate failed :targetView = null");
         }
-        if (config.guideView == null && config.tipRes <= 0) {
+        if (config.guideView == null && config.guideRes <= 0) {
             throw new IllegalStateException("GuideView generate failed :guideView not set");
         }
     }
@@ -142,7 +142,7 @@ public class Guide extends FrameLayout {
 
         int width, height;
         if (config.guideView == null) {
-            config.guideView = LayoutInflater.from(getContext()).inflate(config.tipRes, this, false);
+            config.guideView = LayoutInflater.from(getContext()).inflate(config.guideRes, this, false);
         }
 
         config.guideView.measure(MeasureSpec.makeMeasureSpec(mScreenWidth, MeasureSpec.EXACTLY),
@@ -196,13 +196,7 @@ public class Guide extends FrameLayout {
             config.guideView.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    next();
-                }
-            });
-        } else if (config.mode == ClickMode.TARGET) {
-            config.target.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
+                    v.setOnClickListener(null);
                     next();
                 }
             });
@@ -244,22 +238,43 @@ public class Guide extends FrameLayout {
             this.orientation = orientation;
         }
 
+        /**
+         * 目标
+         * @param target
+         * @return
+         */
         public Builder setTarget(View target) {
             config.target = target;
             return this;
         }
 
-        public Builder setGuide(View tip) {
-            config.guideView = tip;
+        /**
+         * 引导图
+         * @param guideView
+         * @return
+         */
+        public Builder setGuide(View guideView) {
+            config.guideView = guideView;
             return this;
         }
 
-        public Builder setGuide(int tipRes) {
-            config.tipRes = tipRes;
+        /**
+         * 引导图
+         * @param guideRes
+         * @return
+         */
+        public Builder setGuide(int guideRes) {
+            config.guideRes = guideRes;
             return this;
         }
 
-        public Builder setTipOffset(int offsetX, int offsetY) {
+        /**
+         * 设置引导图的 x,y偏移量
+         * @param offsetX
+         * @param offsetY
+         * @return
+         */
+        public Builder setOffset(int offsetX, int offsetY) {
             config.offsetX = offsetX;
             config.offsetY = offsetY;
             return this;
@@ -283,13 +298,15 @@ public class Guide extends FrameLayout {
             }
         }
 
-        public void hide() {
-            if (mGuide != null) {
-                mGuide.setVisibility(GONE);
-            }
-        }
-
-        public Builder setTargetPadding(int left, int top, int right, int bottom) {
+        /**
+         * 设置高亮区域padding
+         * @param left
+         * @param top
+         * @param right
+         * @param bottom
+         * @return
+         */
+        public Builder setHighLightPadding(int left, int top, int right, int bottom) {
             config.targetPaddingLeft = left;
             config.targetPaddingTop = top;
             config.targetPaddingRight = right;
@@ -297,12 +314,22 @@ public class Guide extends FrameLayout {
             return this;
         }
 
+        /**
+         * 设置圆角
+         * @param rx
+         * @param ry
+         * @return
+         */
         public Builder setCorner(float rx, float ry) {
             config.rx = rx;
             config.ry = ry;
             return this;
         }
 
+        /**
+         * 下一个引导图
+         * @return
+         */
         public Builder next() {
             config.next = new Configuration();
             config.next.before = config;
@@ -311,7 +338,7 @@ public class Guide extends FrameLayout {
         }
 
         /**
-         * 屏占比
+         * 设置引导图的屏占比,方便多分辨率尺寸适配
          *
          * @param ratio
          * @return
@@ -321,23 +348,38 @@ public class Guide extends FrameLayout {
             return this;
         }
 
+        /**
+         * 设置引导图相对目标的位置
+         * @param location
+         * @return
+         */
         public Builder location(Location location) {
             config.location = location;
             return this;
         }
 
+        /**
+         * 设置蒙层背景色 argb
+         * @param color
+         * @return
+         */
         public Builder setBackgroundColor(int color) {
             config.backgroundColor = color;
             return this;
         }
 
+        /**
+         * 点击事件触发的模式
+         * @param mode
+         * @return
+         */
         public Builder setClickMode(ClickMode mode) {
             config.mode = mode;
             return this;
         }
     }
 
-    public static int getScreenHeight(Context context) {
+    private int getScreenHeight(Context context) {
         if (context != null) {
             WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
             if (wm != null) {
@@ -349,7 +391,7 @@ public class Guide extends FrameLayout {
         return 0;
     }
 
-    public static int getScreenWidth(Context context) {
+    private int getScreenWidth(Context context) {
         if (context != null) {
             WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
             if (wm != null) {

@@ -10,7 +10,7 @@ class Configuration {
     Location location = Location.BOTTOM;
     View target;
     View guideView;
-    int tipRes;
+    int guideRes;
     int backgroundColor = 0x7f000000;
     int offsetX;
     int offsetY;
