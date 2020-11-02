@@ -27,7 +27,9 @@ new Guide.Builder(Orientation.PORTRAIT)//设置当前横竖屏模式
     .setOffset(20, 20)//设置引导图的 x,y偏移量
     .setGuide(R.layout.guide_1)//引导图
     .setRatio(0.58f)//设置引导图的屏占比,方便多分辨率尺寸适配
-    .setClickMode(ClickMode.GUIDE)//点击事件触发的模式
+    //点击事件触发模式,共三种
+    //1:PARENT  蒙层点击 2:GUIDE  引导图点击 3:TARGET  目标视图点击
+    .setClickMode(ClickMode.GUIDE)
     .next()//下一个引导图
     .setTarget(target_2)
     .location(Location.BOTTOM)
